@@ -1,8 +1,8 @@
-name: update cocomanhua keys
+name: update coco keys
 
 on:
   schedule:
-    - cron: '0 0/8 * * *'
+    - cron: '0,30 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v3
         with:
           path: |
             ~/.local/lib/python3.8/site-packages
@@ -34,18 +34,16 @@ jobs:
           source $GITHUB_WORKSPACE/coco/coco.sh
           main
 
-      - name: push changes to test branch
+      - name: push changes to cocokeys branch
         run: |
-          mkdir test
-          mv coco_keys.json ./test
-          cd test
-          git init -b test
+          mkdir cocokeys
+          mv coco_keys.json ./cocokeys
+          cd cocokeys
+          git init -b cocokeys
           git add .
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "update cocomanhua keys at $(date "+%Y/%m/%d %H:%M")"
+          git commit -m "update coco keys at $(date "+%Y/%m/%d %H:%M")"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f -u origin test
+          git push -f -u origin cocokeys
 
 
       - name: Delete workflow runs
