@@ -41,6 +41,8 @@ jobs:
           cd cocokeys
           git init -b cocokeys
           git add .
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "update coco keys at $(date "+%Y/%m/%d %H:%M")"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin cocokeys
