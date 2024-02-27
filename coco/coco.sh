@@ -14,7 +14,7 @@ use_selenium=false
 
 
 function extraKeys() {
-    [ -e decodeObfuscator ] || git clone https://github.com/Xwite/decodeObfuscator --depth 1
+    [ -e decodeObfuscator ] || git clone https://github.com/xiaohan231/decodeObfuscator --depth 1
     node ./decodeObfuscator/main.js $savePath common cocomanhua
 }
 
